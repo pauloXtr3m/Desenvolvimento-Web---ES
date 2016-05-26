@@ -1,31 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <title>Calculo de IMC</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/calculoIMC.css">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     
 </head>
+
+
 <body>
-	<h2>indice de massa corporal</h2>
+    <script src="js/imc.js"></script>
+  <nav>
+    <div class="nav-wrapper">
+      <a class="brand-logo">Cálculo de IMC</a>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <h3>Insira os dados seguintes</h3>
+    <div class="row">
 	<form>
-		Peso: <input name="peso">
+			<div class="row">
+					<div class="input-field col s10">
+						<input id="peso" name="peso" type="number"  class="validate">
+						<label for="peso">Peso</label>
+
+					</div>
+					<div class="unit-peso"> <h4>Kg</h4></div>
+
+			</div>
 		<br>
-		Altura: <input name="altura">
+			<div class="row">
+				<div class="input-field col s10">
+					<input id="altura" name="altura" type="number" class="validate">
+					<label for="altura">Altura</label>
+				</div>
+
+        <div class="unit-altura"> <h4>cm</h4></div>
+
+        	</div>
 		<br>
-		Sexo: <input name="sexo">
+		<div class="row">
+			<div class="input-field col s10">
+				<input id="sexo" name="sexo">
+				<label for="sexo">Sexo</label>
+			</div>
+      </div>
 		<br>
-		<button>calcular</button>
+		<button class="waves-effect waves-light btn light-green col s2" >Calcular</button>
 	</form>
-<%
-String MUITO_ABAIXO_DO_PESO = "muito abaixo do peso";
-String ABAIXO_DO_PESO = "abaixo do peso";
-String NO_PESO = "saudavel";
-String ACIMA_DO_PESO = "acima do peso";
-String OBESIDADE = "obesidade";
-String OBESIDADE_SEVERA = "obesidade severa";
-String OBESIDADE_MORBIDA = "obesidade morbida";
+
+</div>
+
+
+<h3><%
+
+						
+String MUITO_ABAIXO_DO_PESO = "Muito abaixo do peso";
+String ABAIXO_DO_PESO = "Abaixo do peso";
+String NO_PESO = "Saudável";
+String ACIMA_DO_PESO = "Acima do peso";
+String OBESIDADE = "Obesidade";
+String OBESIDADE_SEVERA = "Obesidade severa";
+String OBESIDADE_MORBIDA = "Obesidade morbida";
+
 
 
 String pesoStr = request.getParameter("peso");
 String alturaStr = request.getParameter("altura");
 String sexoStr = request.getParameter("sexo");
+
+
 
 String resultado ="";
 double imc = 0;
@@ -38,7 +89,7 @@ if(alturaStr.length()>0){
 	altura = Float.parseFloat(alturaStr);
 	altura = altura/100;
 	imc = peso/(altura*altura);
-
+	
 	if((sexoStr.length()>0)&&sexoStr.equals("masculino")){
         if(imc < 17){
             resultado =  MUITO_ABAIXO_DO_PESO;
@@ -90,8 +141,13 @@ if(alturaStr.length()>0){
 }
 }}
 
-out.print("Resultado: " + resultado);
+out.print(resultado);
 
-%>
+%></h3></div>
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
 </body>
 </html>
